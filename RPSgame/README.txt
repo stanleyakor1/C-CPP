@@ -1,0 +1,1 @@
+A simple C++ code to simulate the rock, paper, scissors game.

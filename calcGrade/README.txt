@@ -1,0 +1,1 @@
+This simple code helps a busy professor to compute the final grades of his students based on a midterm and final exams score

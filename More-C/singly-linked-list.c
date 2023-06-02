@@ -8,6 +8,7 @@ struct List
     struct List *next;
 };
 
+//add new item at the begining of the list
 struct List *insert_Atbegining(struct List *node, int item)
 {
    struct List *newnode = (struct List *)malloc(sizeof(struct List));
@@ -22,7 +23,7 @@ struct List *insert_Atbegining(struct List *node, int item)
 }
 
 
-
+// add new item at the end of the list 
 struct List *insert_Atend(struct List *node, int item)
 {
     struct List *newnode = (struct List *)malloc(sizeof(struct List));
@@ -71,6 +72,23 @@ void delete_slist(struct List *node)
         current = next;
     }
 }
+
+// length of the singly linked list
+int listlen(struct List *node)
+{
+    struct List *current = node;
+    int len = 0;
+
+    if(!current)
+        return len;
+
+    while(current)
+    {
+        current = current->next;
+        len++;
+    }
+    return len;
+}
 int main(void) {
     struct List *list = NULL;
 
@@ -79,6 +97,8 @@ int main(void) {
     list = insert_Atend(list, 10);
 
     printList(list);
+    int len = listlen(list);
+    printf("list length = %d\n",len);
     //delete_slist(list);
    
 

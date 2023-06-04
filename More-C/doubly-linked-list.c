@@ -70,16 +70,44 @@ void Backwardprint()
         (head)->prev = ptr;
 
     //initially empty doublylinked list
+    else
+    {
+        head = ptr;
+        tail = head;
+    }
    head = ptr;
-
 }
 
+void addLast(int Item, int Key)
+{
+    Dlist * ptr = (Dlist *) malloc(sizeof(Dlist));
+
+    if(!ptr)
+        return;
+
+    ptr -> item = Item;
+    ptr -> key = Key;
+
+    if(tail)
+    {
+        tail -> next= ptr;
+        ptr -> prev = tail;
+    }
+    
+    tail = ptr;
+}
 
 int main(void)
 {
     // Code for testing the doubly linked list functionality
     addfirst(100,1);
+    addfirst(120,2);
+    addfirst(150,3);
+    addfirst(155,5);
+    addLast(178,9);
+    addLast(200,11);
     Forwardprint();
+    //Backwardprint();
     
     return 0;
 }

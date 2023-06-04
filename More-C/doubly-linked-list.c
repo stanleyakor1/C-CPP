@@ -97,6 +97,32 @@ void addLast(int Item, int Key)
     tail = ptr;
 }
 
+void removeLast()
+{
+     Dlist * ptr = (Dlist *) malloc(sizeof(Dlist));
+
+     if(!tail)
+     {
+        printf("List is already empty");
+        return;
+     }
+
+    ptr = tail->prev;
+    if(ptr)
+     {
+        ptr->next = NULL;
+         free(tail); //deallocate memory for the removed node
+        tail = ptr;
+     }
+
+     else
+     {
+        head = NULL;
+        tail = NULL;
+    }
+   
+}
+
 int main(void)
 {
     // Code for testing the doubly linked list functionality
@@ -107,7 +133,9 @@ int main(void)
     addLast(178,9);
     addLast(200,11);
     Forwardprint();
-    //Backwardprint();
+    removeLast();
+    removeLast();
+    Forwardprint();
     
     return 0;
 }

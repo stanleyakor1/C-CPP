@@ -117,6 +117,7 @@ void removeLast()
 
      else
      {
+        free(tail); //deallocate memory for the removed node
         head = NULL;
         tail = NULL;
     }

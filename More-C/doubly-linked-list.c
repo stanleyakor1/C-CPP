@@ -78,6 +78,8 @@ void Backwardprint()
    head = ptr;
 }
 
+
+//add last node
 void addLast(int Item, int Key)
 {
     Dlist * ptr = (Dlist *) malloc(sizeof(Dlist));
@@ -114,6 +116,8 @@ void removeFirst()
     else
         head = NULL;
 }
+
+// remove last node
 void removeLast()
 {
      Dlist * ptr = (Dlist *) malloc(sizeof(Dlist));
@@ -141,6 +145,8 @@ void removeLast()
    
 }
 
+
+//check size of the doubly linked list
 int  size()
 {
     if(!head)
@@ -194,15 +200,61 @@ void removePos(int pos)
 
     if (nextt != NULL)
       nextt->prev = prevv;
-      
-    prevv->next = nextt;
-    nextt->prev = prevv;
 
     if(current == tail)
         tail = prevv;
 
      free(current);
 }
+
+
+//add node to a position
+void AddPos(int Item, int Key, int pos)
+{
+
+     if (!head || pos <= 0)
+     {
+        addfirst(Item, Key);
+        return;
+     }
+     int len = size();
+     if (pos >= len)
+     {
+        addLast(Item, Key);
+        return;
+     }
+
+     Dlist *ptr = (Dlist *)malloc(sizeof(Dlist));
+     ptr->key = Key;
+     ptr->item = Item;
+
+     Dlist *current = head;
+
+     for (int i = 0; i < pos - 1; i++)
+     {
+        if(!current)
+            return;
+
+        current = current->next;
+   }
+
+    Dlist * prevv = current;
+    Dlist * nextt = current->next;
+
+    prevv->next = ptr;
+    ptr->prev = prevv;
+
+    if (ptr != NULL)
+      ptr->next = nextt;
+
+    if (nextt != NULL)
+      nextt->prev = ptr;
+     
+
+}
+
+
+// main code!
 int main(void)
 {
     // Code for testing the doubly linked list functionality
@@ -216,9 +268,10 @@ int main(void)
     //removeLast();
     //removeLast();
     Forwardprint();
-    removePos(2);
+    //removePos(2);
     //removeFirst();
     //removeFirst();
+    AddPos(123,99,3);
     Forwardprint();
     int len = size();
     printf("size = %d\n", len);

@@ -97,6 +97,23 @@ void addLast(int Item, int Key)
     tail = ptr;
 }
 
+//delete the first item on the list
+void removeFirst()
+{
+
+   if(!head)
+        return;
+
+    Dlist *ptr = head->next;
+    free(head);
+    if(ptr)
+    {
+        ptr->prev = NULL;
+        head = ptr;
+    }
+    else
+        head = NULL;
+}
 void removeLast()
 {
      Dlist * ptr = (Dlist *) malloc(sizeof(Dlist));
@@ -124,6 +141,45 @@ void removeLast()
    
 }
 
+int  size()
+{
+    if(!head)
+        return 0;
+    
+    int count = 0;
+    Dlist * current = head;
+
+    while(current)
+    {
+        current= current->next;
+        count++;
+    }
+    return count;
+
+}
+
+
+void removePos( int pos)
+{
+   //Dlist * ptr = (Dlist *) malloc(sizeof(Dlist));
+   int len = size();
+   if(pos>len|| !head)
+        return;
+
+   Dlist *current = head; 
+
+   for(int i=0; i<pos;i++)
+        current = current->next;
+
+    Dlist * prevv = current->prev;
+    Dlist * nextt = current->next;
+    free(current);
+
+    prevv->next = nextt;
+    nextt->prev = prevv;
+
+    head = prevv;
+}
 int main(void)
 {
     // Code for testing the doubly linked list functionality
@@ -134,9 +190,14 @@ int main(void)
     addLast(178,9);
     addLast(200,11);
     Forwardprint();
-    removeLast();
-    removeLast();
+    //removeLast();
+    //removeLast();
     Forwardprint();
-    
+    removePos(2);
+    //removeFirst();
+    //removeFirst();
+    Forwardprint();
+    int len = size();
+    printf("size = %d\n", len);
     return 0;
 }

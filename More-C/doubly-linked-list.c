@@ -158,27 +158,50 @@ int  size()
 
 }
 
+// remove a node at a particular position
+// index of pos starts from 0.
 
-void removePos( int pos)
+void removePos(int pos)
 {
-   //Dlist * ptr = (Dlist *) malloc(sizeof(Dlist));
    int len = size();
-   if(pos>len|| !head)
+   if(pos>len - 1|| !head)
         return;
 
-   Dlist *current = head; 
+   Dlist *current = head;
 
+   if(pos == 0)
+   {
+    removeFirst();
+    return;
+   } 
+  if(pos == len - 1)
+  {
+    removeLast();
+    return;
+  }
    for(int i=0; i<pos;i++)
-        current = current->next;
+   {
+        if(!current)
+            return;
 
+        current = current->next;
+   }
     Dlist * prevv = current->prev;
     Dlist * nextt = current->next;
-    free(current);
 
+    if (prevv != NULL)
+      prevv->next = nextt;
+
+    if (nextt != NULL)
+      nextt->prev = prevv;
+      
     prevv->next = nextt;
     nextt->prev = prevv;
 
-    head = prevv;
+    if(current == tail)
+        tail = prevv;
+
+     free(current);
 }
 int main(void)
 {
@@ -186,10 +209,10 @@ int main(void)
     addfirst(100,1);
     addfirst(120,2);
     addfirst(150,3);
-    addfirst(155,5);
-    addLast(178,9);
-    addLast(200,11);
-    Forwardprint();
+    addfirst(155,4);
+    addLast(178,5);
+    addLast(200,6);
+    //Forwardprint();
     //removeLast();
     //removeLast();
     Forwardprint();

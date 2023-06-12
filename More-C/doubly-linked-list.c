@@ -253,6 +253,48 @@ void AddPos(int Item, int Key, int pos)
 
 }
 
+//checks if an item exists in the list
+bool search(int Key)
+{
+    if(!head)
+        return false;
+
+    Dlist * current = head;
+
+    while(current)
+    {
+        if(current->key == Key)
+            return true;
+
+        current = current->next;
+    }
+
+    return false;
+}
+
+
+//returns the position of the item in the list
+
+int indexx(int Key)
+{
+    if(!head)
+        return -1;
+
+    Dlist * current = head;
+
+    int pos = 0;
+
+    while(current)
+    {
+        if(current->key == Key)
+            return pos;
+        pos++;
+
+        current = current->next;
+    }
+
+    return -1;
+}
 
 // main code!
 int main(void)
@@ -275,5 +317,14 @@ int main(void)
     Forwardprint();
     int len = size();
     printf("size = %d\n", len);
+
+
+
+    bool find = search(4);
+    printf("search result = %d\n", find);
+
+    int pos = indexx(6);
+    printf("The position of the key = %d\n", pos);
+
     return 0;
 }

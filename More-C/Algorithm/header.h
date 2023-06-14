@@ -10,6 +10,7 @@ void swap(int * a, int * b);
 void bubsort(int * arr, unsigned int len);
 void selectsrt(int * arr, unsigned int len);
 void insertsrt(int * arr, unsigned int len);
+void mergesrt(int *arr, unsigned int len);
 
 
 

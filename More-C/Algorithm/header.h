@@ -9,6 +9,7 @@ int linsearch(int * arr, unsigned int len,int num);
 void swap(int * a, int * b);
 void bubsort(int * arr, unsigned int len);
 void selectsrt(int * arr, unsigned int len);
+void insertsrt(int * arr, unsigned int len);
 
 
 

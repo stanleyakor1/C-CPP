@@ -1,11 +1,13 @@
 #include "header.h"
 
+#if 0
 void swap(int * a, int * b)
 {
     int temp = *a;
      *a = *b;
      *b = temp;
 }
+#endif
 
 void bubsort(int * arr, unsigned int len)
 {
